@@ -1,0 +1,42 @@
+/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+    background: #f4f7fa;
+}
+
+// START This is Main Container for all component that render in BODY component
+.container {
+    // padding: 0px;
+    // box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3);
+    // background-color: aqua;
+
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3);
+}
+
+// END This is Main Container for all component that render in BODY component
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -1,0 +1,10 @@
+<p>flat-types works!</p>
+
+<div *ngIf="flatTypes">
+    <h2>Flat Types</h2>
+    <ul>
+      <li *ngFor="let flatType of flatTypes">
+        {{ flatType.flatId }} | {{ flatType.flatTypeValue }} | {{ flatType.createdBy }} <!-- Adjust based on the actual properties of flatType -->
+      </li>
+    </ul>
+  </div>
