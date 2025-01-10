@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpResponse  } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { HttpOptionUtils } from '../../shared/utils/http-option-utils';
-import { HttpOptionUtilsService } from '../../shared/utils/http-option-utils.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,27 +8,38 @@ import { HttpOptionUtilsService } from '../../shared/utils/http-option-utils.ser
 export class BaseService {
 
   protected http: HttpClient;
-  protected httpOptionUtils: HttpOptionUtilsService;
 
-  constructor(http: HttpClient, httpOptionUtils: HttpOptionUtilsService) {
+  constructor(http: HttpClient) {
     this.http = http;
-    this.httpOptionUtils = httpOptionUtils;
   }
   
+  httpGetService(url: string, headers: HttpHeaders, params?: HttpParams, responseType: 'json' | 'text' | 'blob' = 'json'): Observable<any> {
+    const options: any = {
+      headers: headers,
+      params: params,
+      responseType: responseType
+    };
 
-  httpGetService(
-    url: string,
-    customOptions?: { headers?: HttpHeaders; responseType?: 'text' }
-  ): Observable<any> {
-    debugger;
-    const options = this.httpOptionUtils.getHttpOptions(customOptions);
-
-    // Ensure `responseType` is added when provided
-    if (customOptions?.responseType) {
-      (options as any).responseType = customOptions.responseType;
-    }
-
-    return this.http.get<any>(url, options);
+    return this.http.get(url, options);
   }
-  
+
+  httpPostService(url: string, data: any, headers: HttpHeaders, params?: HttpParams, responseType: 'json' | 'text' | 'blob' = 'json'): Observable<any> {
+    const options: any = {
+      headers: headers,
+      params: params,
+      responseType: responseType
+    };
+
+    return this.http.post(url, data, options);
+  }
+
+  httpPutService(url: string, data: any, headers: HttpHeaders, params?: HttpParams, responseType: 'json' | 'text' | 'blob' = 'json'): Observable<any> {
+    const options: any = {
+      headers: headers,
+      params: params,
+      responseType: responseType
+    };
+
+    return this.http.put(url, data, options);
+  }
 }
