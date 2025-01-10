@@ -1,55 +1,72 @@
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-
-// import { HttpOptionUtils } from '../../../shared/utils/http-option-utils';
+import { HttpHeaders } from '@angular/common/http';
 import { BaseService } from '../../../core/services/base.service';
-import { HttpOptionUtilsService } from '../../../shared/utils/http-option-utils.service';
 import { ApiPath } from '../../../shared/utils/api-path';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class MasterService extends BaseService {
 
-  constructor(
-    http: HttpClient
-    //httpOptionUtilsService: HttpOptionUtilsService
-  ) {
-    super(http
-       //httpOptionUtilsService
-      ); // Pass dependencies to the BaseService constructor
-  }
+  headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Accept': 'application/octet-stream'
+  });
 
-  // Fetch data using the GET service method from BaseService
+  textResponseType: 'text'= 'text';
+  blobResponseType : 'blob' = 'blob'; 
+
   fetchFlatTypes(): Observable<any> {
-    return this.httpGetService(ApiPath.FETCH_FLAT_TYPES_URL)
-      .pipe(map((result: string) => {
+
+    return this.httpGetService(ApiPath.FETCH_FLAT_TYPES_URL, this.headers, undefined, this.textResponseType)
+    .pipe(
+      map(response => {
         try {
-          const parsedResult = JSON.parse(result);  // Parse the response from 'text' to JSON
+          const parsedResult = JSON.parse(response);
           return parsedResult;
         } catch (error) {
           console.error('Error parsing JSON:', error);
-          throw error;  // Optionally throw or handle the error here
+          throw error;
         }
-      }));
+      })
+    );
   }
 
-  // fetchFile(id: number, fileFor: string): Observable<Blob> {
-  //   // Specify responseType as 'blob' for files
-  //   return this.httpGetService(`${ApiPath.FETCH_FLAT_TYPES_URL}?id=${id}&fileFor=${fileFor}`, {responseType: 'blob'});
-  // }
+  addFlatType(postData: any): Observable<any>{
+    
+    return this.httpPostService(ApiPath.ADD_FLAT_TYPE_URL, postData, this.headers, undefined, this.textResponseType)
+    .pipe(
+      map(response =>{
+        try {
+          const parsedResult = JSON.parse(response);
+          return parsedResult;
+        } catch (error) {
+          console.error('Error parsing JSON:', error);
+          throw error;
+        }
+      })
+    )
+  }
 
-  // Fetch image or any binary file (e.g., PDF) from API
-  fetchFile_v1(id: number, fileFor: string): Observable<Blob> {
-    const url = `${ApiPath.FETCH_FLAT_TYPES_URL}/${id}?fileFor=${fileFor}`;  // Example URL, adjust according to your API
+  modifyFlatType(postData: any): Observable<any>{
+    
+    return this.httpPutService(ApiPath.MODIFY_FLAT_TYPE_URL, postData, this.headers, undefined, this.textResponseType)
+    .pipe(
+      map(response =>{
+        try {
+          const parsedResult = JSON.parse(response);
+          return parsedResult;
+        } catch (error) {
+          console.error('Error parsing JSON:', error);
+          throw error;
+        }
+      })
+    )
+  }
 
-    // Set custom headers (e.g., authorization) if needed
-    const customHeaders = new HttpHeaders({
-      'Accept': 'application/octet-stream',  // Indicate that we expect binary data
-    });
-
-    // Fetch the file as a Blob (binary data)
-    return this.http.get<Blob>(url, { responseType: 'blob' as 'json' });
+  fetchFile(id: number, fileFor: string): Observable<Blob> {
+    return this.httpGetService(`${ApiPath.FETCH_FILE}?id=${id}&fileFor=${fileFor}`, this.headers, undefined, this.blobResponseType )
   }
 }
