@@ -12,6 +12,8 @@ import { SidenavComponent } from './core/navigation/sidenav/sidenav.component';
 import { SublevelMenuComponent } from './core/navigation/sidenav/sublevel-menu.component';
 import { WeatherForecastComponent } from './shared/components/weather-forecast/weather-forecast.component';
 import { FlatTypesComponent } from './features/master/components/flat-types/flat-types.component';
+import {FlatsComponent } from './features/master/components/flats/flats.component';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
@@ -21,14 +23,16 @@ import { FlatTypesComponent } from './features/master/components/flat-types/flat
     SidenavComponent,
     SublevelMenuComponent,
     WeatherForecastComponent,
-    FlatTypesComponent
+    FlatTypesComponent,
+    FlatsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     CoreModule,
-    HttpClientModule
+    HttpClientModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

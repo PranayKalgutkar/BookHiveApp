@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { HttpHeaders } from '@angular/common/http';
+import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { BaseService } from '../../../core/services/base.service';
 import { ApiPath } from '../../../shared/utils/api-path';
 
@@ -18,7 +18,29 @@ export class MasterService extends BaseService {
   textResponseType: 'text'= 'text';
   blobResponseType : 'blob' = 'blob'; 
 
-  fetchFlatTypes(): Observable<any> {
+  fetchFlatTypes(pageNumber: number, pageSize: number, sortColumn: string, sortDirection: string): Observable<any> {
+
+    const params = new HttpParams()
+    .set('page', pageNumber.toString())
+    .set('limit', pageSize.toString())
+    .set('sortColumn', sortColumn.toString())
+    .set('sortDirection', sortDirection.toString());
+
+    return this.httpGetService(ApiPath.FETCH_FLAT_TYPES_URL, this.headers, params, this.textResponseType)
+    .pipe(
+      map(response => {
+        try {
+          const parsedResult = JSON.parse(response);
+          return parsedResult;
+        } catch (error) {
+          console.error('Error parsing JSON:', error);
+          throw error;
+        }
+      })
+    );
+  }
+
+  fetchFlatTypesAll(): Observable<any> {
 
     return this.httpGetService(ApiPath.FETCH_FLAT_TYPES_URL, this.headers, undefined, this.textResponseType)
     .pipe(
@@ -64,6 +86,28 @@ export class MasterService extends BaseService {
         }
       })
     )
+  }
+
+  fetchFlats(pageNumber: number, pageSize: number, sortColumn: string, sortDirection: string): Observable<any> {
+
+    const params = new HttpParams()
+    .set('page', pageNumber.toString())
+    .set('limit', pageSize.toString())
+    .set('sortColumn', sortColumn.toString())
+    .set('sortDirection', sortDirection.toString());
+
+    return this.httpGetService(ApiPath.FETCH_FLATS_URL, this.headers, params, this.textResponseType)
+    .pipe(
+      map(response => {
+        try {
+          const parsedResult = JSON.parse(response);
+          return parsedResult;
+        } catch (error) {
+          console.error('Error parsing JSON:', error);
+          throw error;
+        }
+      })
+    );
   }
 
   fetchFile(id: number, fileFor: string): Observable<Blob> {

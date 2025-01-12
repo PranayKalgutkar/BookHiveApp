@@ -1,10 +1,33 @@
 <p>flat-types works!</p>
+Total Data : {{totalData}}
+<div class="container">
+  <div class="table-container">
+    <mat-table [dataSource]="dataSource" matSort matSortActive="flatTypeId" matSortDisableClear matSortDirection="asc">
+      
+      <ng-container matColumnDef="flatTypeId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Flat Type ID</mat-header-cell>
+        <mat-cell *matCellDef="let fT">{{ fT.flatTypeId }}</mat-cell>
+      </ng-container>
 
-<div *ngIf="flatTypes">
-    <h2>Flat Types</h2>
-    <ul>
-      <li *ngFor="let flatType of flatTypes">
-        {{ flatType.flatId }} | {{ flatType.flatTypeValue }} | {{ flatType.createdBy }} <!-- Adjust based on the actual properties of flatType -->
-      </li>
-    </ul>
+      <ng-container matColumnDef="flatTypeValue">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>flatTypeValue</mat-header-cell>
+        <mat-cell *matCellDef="let fT">{{ fT.flatTypeValue }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="createdOn">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Created On</mat-header-cell>
+        <mat-cell *matCellDef="let fT">{{ fT.createdOn | date : 'dd/MM/yy, h:mm a' }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="createdBy">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Created By</mat-header-cell>
+        <mat-cell *matCellDef="let fT">{{ fT.createdBy }}</mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator class="mat-paginator-sticky" #paginator [length]="totalData" [pageSizeOptions]="pageSizes" showFirstLastButtons></mat-paginator>
   </div>
+</div>

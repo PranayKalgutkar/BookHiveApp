@@ -3,8 +3,8 @@ export abstract class ApiPath {
 
     static readonly ADD_FLAT_TYPE_URL = `${ApiPath.API_URL}FlatType/AddFlatType`;
     static readonly MODIFY_FLAT_TYPE_URL = `${ApiPath.API_URL}FlatType/ModifyFlatType`;
-    static readonly FETCH_FLAT_TYPES_URL = `${ApiPath.API_URL}FlatType/GetFlatTypesAsyncEncrypted`;
     static readonly REMOVE_FLAT_TYPE_URL = `${ApiPath.API_URL}FlatType/RemoveFlatType`;
+    static readonly FETCH_FLAT_TYPES_URL = `${ApiPath.API_URL}FlatType/GetFlatTypes`;
 
     static readonly ADD_FLAT_URL = `${ApiPath.API_URL}Flat/AddFlat`;
     static readonly MODIFY_FLAT_URL = `${ApiPath.API_URL}Flat/ModifyFlat`;
