@@ -1,1 +1,46 @@
-<p>flats works!</p>
+<p>flat page!</p>
+<div class="container">
+  <div class="table-container">
+    <table mat-table [dataSource]="dataSource" matSort matSortActive="flatId" matSortDisableClear matSortDirection="asc" class="mat-elevation-z8">
+        <!-- Columns definition -->
+
+        <ng-container matColumnDef="flatId">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>flatId</th>
+          <td mat-cell *matCellDef="let element">{{element.flatId}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="flatNo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header >flatNo</th>
+          <td mat-cell *matCellDef="let element">{{element.flatNo}}</td>
+        </ng-container>
+
+        <!-- <ng-container matColumnDef="flatTypeId">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>flatTypeId</th>
+          <td mat-cell *matCellDef="let element">{{element.flatTypeId}}</td>
+        </ng-container> -->
+    
+        <ng-container matColumnDef="flatTypeValue">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>flatTypeValue</th>
+          <td mat-cell *matCellDef="let element">{{element.flatTypeValue}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="createdOn">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>CreatedOn</th>
+          <td mat-cell *matCellDef="let element">{{ element.createdOn | date : 'dd/MM/yy, h:mm a' }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="createdBy">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>CreatedBy</th>
+          <td mat-cell *matCellDef="let element">{{ element.createdBy }}</td>
+        </ng-container>
+    
+        <!-- Header and Row Declaration -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    
+      <!-- Paginator -->
+      <!-- <mat-paginator [length]="dataSource.data.length" [pageSize]="4" [pageSizeOptions]="[2, 4, 8]"></mat-paginator> -->
+      <mat-paginator [length]="totalData" #paginator [pageSize]="5" [pageSizeOptions]="[5, 10]" showFirstLastButtons></mat-paginator>
+</div>
+</div>

@@ -88,10 +88,27 @@ export class MasterService extends BaseService {
     )
   }
 
-  // fetchFlatTypesPaginated(pageNumber: number, pageSize: number): Observable<any> {
-  //   return this.httpGetService(`${ApiPath.FETCH_FLATTYPES_PAGINATED_URL}?pageNumber=${pageNumber}&pageSize=${pageSize}`,
-  //     this.httpOption);
-  // }
+  fetchFlats(pageNumber: number, pageSize: number, sortColumn: string, sortDirection: string): Observable<any> {
+
+    const params = new HttpParams()
+    .set('page', pageNumber.toString())
+    .set('limit', pageSize.toString())
+    .set('sortColumn', sortColumn.toString())
+    .set('sortDirection', sortDirection.toString());
+
+    return this.httpGetService(ApiPath.FETCH_FLATS_URL, this.headers, params, this.textResponseType)
+    .pipe(
+      map(response => {
+        try {
+          const parsedResult = JSON.parse(response);
+          return parsedResult;
+        } catch (error) {
+          console.error('Error parsing JSON:', error);
+          throw error;
+        }
+      })
+    );
+  }
 
   fetchFile(id: number, fileFor: string): Observable<Blob> {
     return this.httpGetService(`${ApiPath.FETCH_FILE}?id=${id}&fileFor=${fileFor}`, this.headers, undefined, this.blobResponseType )

@@ -43,9 +43,12 @@ export class FlatTypesComponent implements OnInit {
     this.dataSource.sort = this.sort;
 
     // If the user changes the sort order, reset back to the first page.
-    this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
+    this.sort.sortChange.subscribe(() => {
+      this.paginator.pageIndex = 0;
+    });
 
     this.loading = true; // Only show Progress bar when the page is rendered for the first time.
+    
     merge(this.sort.sortChange, this.paginator.page)
       .pipe(startWith({}),
         switchMap(() => {
