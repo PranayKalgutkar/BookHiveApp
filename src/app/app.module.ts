@@ -13,6 +13,8 @@ import { SublevelMenuComponent } from './core/navigation/sidenav/sublevel-menu.c
 import { WeatherForecastComponent } from './shared/components/weather-forecast/weather-forecast.component';
 import { FlatTypesComponent } from './features/master/components/flat-types/flat-types.component';
 
+import { MaterialModule } from './material.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +30,8 @@ import { FlatTypesComponent } from './features/master/components/flat-types/flat
     AppRoutingModule,
     BrowserAnimationsModule,
     CoreModule,
-    HttpClientModule
+    HttpClientModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
