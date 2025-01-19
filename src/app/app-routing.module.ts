@@ -6,6 +6,11 @@ const routes: Routes = [
     path: 'feature/master',
     loadChildren: () => import('./features/master/master.module')
         .then(m => m.MasterModule)
+},
+{
+  path: 'resident',
+  loadChildren: () => import('./features/resident/resident.module')
+      .then(m => m.ResidentModule)
 }
 ];
 

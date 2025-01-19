@@ -1,0 +1,28 @@
+<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        101
+      </mat-panel-title>
+      <mat-panel-description style="padding-left: 200px;">
+        Kalgutkar's
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+  
+    <div class="owner-list">
+      <div class="owner-tile" *ngFor="let owner of owners">
+        <div class="owner-card">
+          <div class="owner-image">
+            <img [src]="owner.picture" alt="Owner Image" class="owner-image-img" />
+          </div>
+          <div class="owner-details">
+            <h2>{{ owner.name }}</h2>
+            <p>{{ owner.adharcardNo }}</p>
+            <p>{{ owner.contact }}</p>
+            <p>{{ owner.emailId }}</p>
+            <!-- <p>{{ owner.details }}</p> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-expansion-panel>
+  
