@@ -88,17 +88,11 @@ export class MasterService extends BaseService {
     )
   }
 
-  fetchFlats(pageNumber: number, pageSize: number, sortColumn: string, sortDirection: string): Observable<any> {
-
-    const params = new HttpParams()
-    .set('page', pageNumber.toString())
-    .set('limit', pageSize.toString())
-    .set('sortColumn', sortColumn.toString())
-    .set('sortDirection', sortDirection.toString());
-
-    return this.httpGetService(ApiPath.FETCH_FLATS_URL, this.headers, params, this.textResponseType)
+  fetchFlats(postData: any): Observable<any>{
+    
+    return this.httpPostService(ApiPath.FETCH_FLATS_URL, postData, this.headers, undefined, this.textResponseType)
     .pipe(
-      map(response => {
+      map(response =>{
         try {
           const parsedResult = JSON.parse(response);
           return parsedResult;
@@ -107,7 +101,7 @@ export class MasterService extends BaseService {
           throw error;
         }
       })
-    );
+    )
   }
 
   fetchFile(id: number, fileFor: string): Observable<Blob> {

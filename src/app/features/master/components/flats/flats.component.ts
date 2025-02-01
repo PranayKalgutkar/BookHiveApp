@@ -83,12 +83,14 @@ export class FlatsComponent implements OnInit {
   }
 
   private fetchDataFromServer() {
-    const pageIndex = this.paginator.pageIndex + 1; // Adjust page index for server-side pagination
-    const pageSize = this.paginator.pageSize;
-    const sortColumn = this.sort.active;
-    const sortDirection = this.sort.direction;
+    const postData = {
+      page: this.paginator.pageIndex + 1,  // Adjust page index for server-side pagination
+      limit: this.paginator.pageSize,
+      sortColumn: this.sort.active,
+      sortDirection: this.sort.direction
+    };
 
-    return this.masterService.fetchFlats(pageIndex, pageSize, sortColumn, sortDirection)
+    return this.masterService.fetchFlats(postData)
       .pipe(
         catchError((err) => {
           // In case of error, return an empty array and stop loading
