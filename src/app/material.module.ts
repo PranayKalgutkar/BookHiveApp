@@ -5,6 +5,9 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 
 
@@ -14,7 +17,10 @@ import { MatButtonModule } from '@angular/material/button';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule,
+    MatExpansionModule,
+    MatGridListModule
   ]
   // imports: [
   //   CommonModule

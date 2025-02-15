@@ -81,21 +81,21 @@ export const navbarData: NavigationData[] = [
         ]
     },
     {
-        routeLink: 'feature/resident',
+        routeLink: 'resident',
         icon: 'bi bi-houses', //<i class="bi bi-houses"></i>
         label: 'Residents',
         items: [
             {
-                routeLink: 'feature/resident/owner',
+                routeLink: 'resident/owner',
                 label: 'Owner',
                 items:
                     [
                         {
-                            routeLink: 'feature/resident/owner/new',
+                            routeLink: 'resident/owner/new',
                             label: 'New Owner',
                         },
                         {
-                            routeLink: 'feature/resident/owner/list',
+                            routeLink: 'resident/owner/list',
                             label: 'Owner List',
                         }
                         // {
