@@ -1,0 +1,74 @@
+<mat-card>
+    <mat-card-header>
+        <img mat-card-avatar src="https://material.angular.io/assets/img/examples/shiba1.jpg" alt="Shiba Inu">
+        <mat-card-title>Owner</mat-card-title>
+        <mat-card-subtitle>New</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content [formGroup]="userInfoForm">
+        <div>
+            <button mat-raised-button class="example-add-tab-button" (click)="addTab(selectAfterAdding.checked)">
+                Add new tab
+            </button>
+            <mat-checkbox #selectAfterAdding> Select tab after adding </mat-checkbox>
+        </div>
+        <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
+            @for (tab of tabs; track tab; let index = $index) {
+            <mat-tab [label]="tab">
+                <div class="container">
+                    <!-- Left Side: Upload & Preview -->
+                    <div class="upload-section">
+                        <div class="preview-container">
+                            <div class="preview-rectangle">
+                                <img id="previewImage" src="https://via.placeholder.com/150" alt="Preview">
+                                <button id="clearButton" class="clear-button" onclick="clearImage()">Clear</button>
+                            </div>
+                        </div>
+                        <input type="file" id="fileInput" class="fileInputVisual" onchange="previewFile()">
+                        <label for="fileInput" class="upload-label">Choose File</label>
+                    </div>
+                
+                    <!-- Right Side: Form Fields -->
+                    <div class="form-section">
+                        <div class="form-row">
+                            <div class="form-field">
+                                <mat-form-field class="mat-form-field-input">
+                                    <mat-label>Full Name</mat-label>
+                                    <input matInput [formControlName]="'fullName_' + index">
+                                </mat-form-field>
+                            </div>
+                            <div class="form-field">
+                                <mat-form-field class="mat-form-field-input">
+                                    <mat-label>Adhar Card No.</mat-label>
+                                    <input matInput [formControlName]="'adharCardNo_' + index">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <mat-form-field class="mat-form-field-input">
+                                    <mat-label>Email ID</mat-label>
+                                    <input matInput [formControlName]="'emailId_' + index">
+                                </mat-form-field>
+                            </div>
+                            <div class="form-field">
+                                <mat-form-field class="mat-form-field-input">
+                                    <mat-label>Mobile No</mat-label>
+                                    <input matInput [formControlName]="'mobileNo_' + index">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button mat-raised-button class="example-delete-tab-button" [disabled]="tabs.length === 1"
+                    (click)="removeTab(index)">
+                    Delete Tab
+                </button>
+            </mat-tab>
+            }
+        </mat-tab-group>
+    </mat-card-content>
+    <mat-card-actions>
+
+    </mat-card-actions>
+</mat-card>
