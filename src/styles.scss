@@ -40,3 +40,25 @@ body {
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+//MATERIAL STYLE
+.mat-form-field-input {
+    @include mat.form-field-density(-4);
+    //width: 100%;
+    width: calc(100% - 5px);
+    height: 70px;
+    // width: 500px;
+    // height: calc(100% - 35px);
+    text-align: center; /* Align text horizontally */
+    line-height: 70px;  /* Match height to center vertically */
+    // height: 70px;
+}
+
+.mat-form-field-calender {
+    @include mat.form-field-density(-4);
+    //width: 100%;
+    height: calc(100% - 5px);
+    width: calc(100% - 5px);
+}
+
+

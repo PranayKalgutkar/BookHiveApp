@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms'
 
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material.module';
@@ -16,6 +17,9 @@ import { WeatherForecastComponent } from './shared/components/weather-forecast/w
 import { FlatTypesComponent } from './features/master/components/flat-types/flat-types.component';
 import { FlatsComponent } from './features/master/components/flats/flats.component';
 import { NewOwnerComponent  } from './features/resident/components/new-owner/new-owner.component';
+import { DatePipe } from '@angular/common';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { AppMatTabSecondaryInfoComponent } from './shared/components/app-mat-tab-secondary-info/app-mat-tab-secondary-info.component';
 
 
 @NgModule({
@@ -28,7 +32,8 @@ import { NewOwnerComponent  } from './features/resident/components/new-owner/new
     WeatherForecastComponent,
     FlatTypesComponent,
     FlatsComponent,
-    NewOwnerComponent
+    NewOwnerComponent,
+    AppMatTabSecondaryInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -36,9 +41,16 @@ import { NewOwnerComponent  } from './features/resident/components/new-owner/new
     BrowserAnimationsModule,
     CoreModule,
     HttpClientModule,
+    ReactiveFormsModule,
     MaterialModule
   ],
-  providers: [],
+  providers: [
+    DatePipe,
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue:
+        { appearance: 'outline' }
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

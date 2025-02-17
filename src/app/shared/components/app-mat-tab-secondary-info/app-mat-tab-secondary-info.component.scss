@@ -1,0 +1,103 @@
+/* Container: Flexbox Layout */
+.container {
+    display: flex;
+    justify-content: space-between; /* Distribute space evenly between left and right */
+    gap: 20px;
+    align-items: flex-start;
+    padding-top: 10px;
+}
+
+/* Left Side: Upload Section */
+.upload-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 200px; /* Set width for upload section */
+}
+
+/* Image Preview Box */
+.preview-rectangle {
+    width: 150px;
+    height: 150px;
+    border: 2px dashed #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.preview-rectangle img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* Clear Button */
+.clear-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #f44336;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    display: none;
+}
+
+/* Upload Button */
+.upload-label {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.fileInputVisual {
+    display: none;
+}
+
+/* Right Side: Form Section */
+.form-section {
+    display: flex;
+    flex-direction: column;
+    width: 90%; /* Adjust width to take remaining space */
+}
+
+/* Row: Contains Two Inputs */
+.form-row {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 15px;
+}
+
+/* Form Field */
+.form-field {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+// .form-field label {
+//     font-size: 14px;
+//     font-weight: bold;
+//     margin-bottom: 5px;
+// }
+
+// .form-field input {
+//     padding: 8px;
+//     border: 1px solid #ccc;
+//     border-radius: 4px;
+//     width: 100%;
+// }
+
+
+/* General Button Styling */
+.example-add-tab-button,
+.example-delete-tab-button {
+    margin: 8px;
+}
+
