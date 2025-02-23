@@ -1,7 +1,7 @@
 <div class="sidenav-header">
     <img [width]="profilePicSize()" [height]="profilePicSize()" src="../../../../assets/daniel.jpg" />
     <div class="header-text" [class.hide-header-text]="sideNavCollapsed()">
-        <h2>Daniel</h2>
+        <h2>Daniel Radcliff</h2>
         <p>SCI-11/B-23</p>
     </div>
 </div>
@@ -22,7 +22,7 @@
         </a>
 
         <!-- Nested Sub Menues -->
-        <div *ngIf="item.subItems && nestedMenuOpen()" @expandContractMenu>
+        <div *ngIf="item.subItems && isMenuOpen(item)" @expandContractMenu>
             <a mat-list-item class="menu-item" [class.indented]="!sideNavCollapsed()"
             
                 *ngFor="let subItem of item.subItems" [routerLink]="subItem.route" routerLinkActive

@@ -1,3 +1,7 @@
+:host * {
+    transition: all 500ms ease-in-out;
+}
+
 .sidenav-header {
     padding-top: 24px;
     text-align: center;
@@ -33,12 +37,6 @@
     border-left: 5px solid;
     border-left-color: rgba(0, 0, 0, 0);
     //--mat-list-list-item-leading-icon-end-space: -16px;
-    //display: flex;
-    //align-items: center;
-    //padding: 10px 16px;
-    //text-decoration: none;
-    //color: black;
-    //border-left: 5px solid transparent;
 }
 
 .selected-menu-item {
@@ -48,22 +46,4 @@
 
 .indented {
     --mat-list-list-item-leading-icon-start-space: 48px;
-}
-
-/* Submenu Styles */
-.submenu {
-    padding-left: 10px;
-}
-
-.sub-menu-item {
-    padding-left: 40px;
-}
-
-.submenu-icon {
-    margin-right: 12px;
-    font-size: 20px;
-}
-
-.menu-item-expand-more{
-    margin-left: 10px;
 }

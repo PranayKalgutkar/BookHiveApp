@@ -28,6 +28,8 @@ export class CustomSidenavComponent {
     this.sideNavCollapsed.set(val);
   }
 
+  expandedMenus = signal<{ [key: string]: boolean }>({});
+
   //collapsed_1 = input(false);
 
   nestedMenuOpen = signal(false);
@@ -79,11 +81,26 @@ export class CustomSidenavComponent {
     },
   ]);
 
+  // toggleNested(menuItem: MenuItem) {
+  //   if (!menuItem.subItems || menuItem.subItems.length === 0) {
+  //     return;
+  //   }
+  //   this.expandedMenus.update((state) => ({
+  //     ...state,
+  //     [menuItem.label]: !state[menuItem.label]
+  //   }));
+  // }
+
   toggleNested(menuItem: MenuItem) {
     if (!menuItem.subItems || menuItem.subItems.length === 0) {
       return;
     }
-    this.nestedMenuOpen.set(!this.nestedMenuOpen());
+  
+    this.expandedMenus.set({ [menuItem.label]: !this.isMenuOpen(menuItem) });
+  }
+
+  isMenuOpen(menuItem: MenuItem): boolean {
+    return this.expandedMenus()[menuItem.label] || false;
   }
 
   profilePicSize = computed(() => this.sideNavCollapsed() ? '32' : '100');
