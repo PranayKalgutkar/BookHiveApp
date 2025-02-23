@@ -6,14 +6,14 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'feature/dashboard'
+    redirectTo: 'dashboard'
   },
   {
-    path: 'feature/dashboard',
+    path: 'dashboard',
     component : DashboardComponent
   },
   {
-    path: 'feature/master',
+    path: 'master',
     loadChildren: () => import('./features/master/master.module')
       .then(m => m.MasterModule)
   },

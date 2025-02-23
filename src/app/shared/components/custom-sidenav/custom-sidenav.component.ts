@@ -1,4 +1,4 @@
-import { Component, computed, Input, signal } from '@angular/core';
+import { Component, computed, input, Input, signal } from '@angular/core';
 import { MenuItem } from '../../models/uicontrol';
 import { fadeInOut } from '../../utils/navigation-utils';
 import { animate, animation, style, transition, trigger } from '@angular/animations';
@@ -23,9 +23,12 @@ import { animate, animation, style, transition, trigger } from '@angular/animati
 export class CustomSidenavComponent {
 
   sideNavCollapsed = signal(false);
+
   @Input() set collapsed(val: boolean) {
     this.sideNavCollapsed.set(val);
   }
+
+  //collapsed_1 = input(false);
 
   nestedMenuOpen = signal(false);
 
@@ -33,26 +36,37 @@ export class CustomSidenavComponent {
     {
       icon: 'dashboard',
       label: 'Dashboard',
-      route: 'feature/dashboard'
+      route: 'dashboard'
+    },
+    {
+      icon: 'inventory_2',
+      label: 'Inventory',
+      route: 'master',
+      subItems: [
+        {
+          icon: 'menu_book',
+          label: 'Book List',
+          route: '/master/flattypes'
+        },
+        {
+          icon: 'library_add',
+          label: 'Add Book',
+          route: '/master/flats'
+        }
+      ]
     },
     {
       icon: 'video_library',
       label: 'Content',
-      route: 'feature/master',
+      route: 'resident',
       subItems: [
         {
           icon: 'play_circle',
           label: 'Videos',
-          route: 'feature/master/flattypes'
-        },
-        {
-          icon: 'playlist_play',
-          label: 'Playlists',
-          route: 'feature/master/flats'
+          route: '/resident/owner/new'
         }
       ]
     },
-
     {
       icon: 'analytics',
       label: 'Analytics',
@@ -73,4 +87,8 @@ export class CustomSidenavComponent {
   }
 
   profilePicSize = computed(() => this.sideNavCollapsed() ? '32' : '100');
+
+  logSideNavState() {
+    console.log("SideNav Collapsed:", this.sideNavCollapsed());
+  }
 }

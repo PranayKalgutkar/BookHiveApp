@@ -16,6 +16,7 @@ import { DatePipe } from '@angular/common';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { CustomSidenavComponent } from './shared/components/custom-sidenav/custom-sidenav.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
+import { NewOwnerComponent } from './features/resident/components/new-owner/new-owner.component'
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { DashboardComponent } from './features/dashboard/dashboard.component';
     FlatTypesComponent,
     FlatsComponent,
     CustomSidenavComponent,
-    DashboardComponent
+    DashboardComponent,
+    NewOwnerComponent
   ],
   imports: [
     BrowserModule,
