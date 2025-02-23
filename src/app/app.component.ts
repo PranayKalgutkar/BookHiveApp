@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 
 //Component Imports
 import { SideNavToggle} from './shared/utils/navigation-utils';
@@ -9,13 +9,8 @@ import { SideNavToggle} from './shared/utils/navigation-utils';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'SocietyApp';
-  isSideNavCollapsed = false;
-  screenWidth = 0;
-  //_sidNavToggle : SideNavToggle | undefined;
 
-  onToggleSideNav(data: SideNavToggle): void {
-    this.screenWidth = data.screenWidth;
-    this.isSideNavCollapsed = data.collapsed;
-  }
+  collapsed = signal(false);
+
+  sidenavWidth =  computed(() => this.collapsed() ? '65px' : '250px');
 }
